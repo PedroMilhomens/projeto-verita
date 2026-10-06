@@ -1,0 +1,132 @@
+:root {
+  --papel: #f3f6fa;
+  --superficie: #ffffff;
+  --tinta: #0a2150;
+  --tinta-suave: #556072;
+  --linha: #d8dfea;
+  --destaque: #1766d1;
+  --destaque-fundo: #e4eefb;
+  --fonte-titulo: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --fonte-texto: "Public Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papel: #0e1522;
+    --superficie: #17202f;
+    --tinta: #e8edf3;
+    --tinta-suave: #9aa6b6;
+    --linha: #2b3647;
+    --destaque: #6cb0f5;
+    --destaque-fundo: #1b3047;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font: 400 1rem/1.55 var(--fonte-texto);
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+:focus-visible { outline: 3px solid var(--destaque); outline-offset: 2px; }
+
+/* Topo: fica sempre claro, pois a logo é azul-marinho */
+.topo { background: #ffffff; color: #0a2150; border-bottom: 1px solid #d8dfea; padding: 1.25rem 1.25rem 1.75rem; }
+.topo__conteudo { max-width: 72rem; margin: 0 auto; }
+.marca { margin: 0; line-height: 0; }
+.marca img { display: block; height: clamp(5.5rem, 14vw, 8rem); width: auto; max-width: 100%; margin-left: -0.5rem; }
+.lema { margin: 0.25rem 0 1.25rem; max-width: 40rem; color: #556072; }
+.busca input {
+  width: 100%; max-width: 40rem; padding: 0.9rem 1.1rem;
+  font: inherit; color: #0a2150; background: #f3f6fa;
+  border: 2px solid #d8dfea; border-radius: 0.5rem;
+}
+.busca input:focus { outline: none; border-color: #1766d1; background: #fff; }
+
+/* Layout */
+.layout {
+  max-width: 72rem; margin: 0 auto; padding: 1.5rem 1.25rem 3rem;
+  display: grid; grid-template-columns: 16rem 1fr; gap: 2rem; align-items: start;
+}
+@media (max-width: 800px) { .layout { grid-template-columns: 1fr; gap: 1rem; } }
+
+/* Filtros */
+.filtros { position: sticky; top: 1rem; }
+@media (max-width: 800px) { .filtros { position: static; } }
+.filtros__caixa { border: 1px solid var(--linha); border-radius: 0.5rem; background: var(--superficie); padding: 0 1rem 1rem; }
+.filtros__caixa > summary {
+  cursor: pointer; padding: 0.9rem 0; font: 600 1.05rem var(--fonte-titulo);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.selo {
+  background: var(--destaque); color: var(--superficie); font: 600 0.75rem var(--fonte-texto);
+  min-width: 1.4rem; height: 1.4rem; padding: 0 0.4rem; border-radius: 1rem;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.selo[hidden] { display: none; }
+.grupo { border: 0; border-top: 1px solid var(--linha); margin: 0; padding: 0.75rem 0 0.25rem; min-width: 0; }
+.grupo legend { font-weight: 600; font-size: 0.9rem; padding: 0; margin-bottom: 0.25rem; }
+.opcao { display: flex; align-items: center; gap: 0.55rem; padding: 0.25rem 0; cursor: pointer; font-size: 0.95rem; }
+.opcao input { accent-color: var(--destaque); width: 1rem; height: 1rem; margin: 0; }
+.opcao span { flex: 1; }
+.opcao small { color: var(--tinta-suave); font-size: 0.8rem; }
+.btn-limpar {
+  margin-top: 0.75rem; padding: 0.5rem 0.9rem; font: 500 0.9rem var(--fonte-texto);
+  color: var(--destaque); background: transparent; border: 1px solid var(--destaque);
+  border-radius: 0.4rem; cursor: pointer;
+}
+.btn-limpar:hover:not(:disabled) { background: var(--destaque-fundo); }
+.btn-limpar:disabled { opacity: 0.4; cursor: default; }
+
+/* Barra de resultados */
+.barra { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.barra p { margin: 0; font-weight: 600; }
+.ordem { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--tinta-suave); }
+.ordem select {
+  font: inherit; color: var(--tinta); background: var(--superficie);
+  border: 1px solid var(--linha); border-radius: 0.4rem; padding: 0.4rem 0.6rem;
+}
+
+/* Cartões */
+.lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); gap: 1rem; }
+.cartao {
+  display: flex; gap: 0.9rem; padding: 1.1rem;
+  background: var(--superficie); border: 1px solid var(--linha); border-radius: 0.5rem;
+}
+.cartao__mono {
+  flex: none; width: 2.75rem; height: 2.75rem; border-radius: 0.35rem;
+  display: grid; place-items: center;
+  font: 700 1.4rem var(--fonte-titulo);
+  color: hsl(var(--matiz) 55% 22%); background: hsl(var(--matiz) 60% 88%);
+}
+@media (prefers-color-scheme: dark) {
+  .cartao__mono { color: hsl(var(--matiz) 70% 85%); background: hsl(var(--matiz) 35% 24%); }
+}
+.cartao__mono--logo { background: #ffffff; border: 1px solid var(--linha); padding: 0.3rem; }
+.cartao__mono--logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.cartao__corpo { min-width: 0; }
+.cartao h2 { margin: 0; font: 600 1.15rem/1.25 var(--fonte-titulo); }
+.cartao h2 a { color: inherit; text-decoration: none; }
+.cartao h2 a:hover { color: var(--destaque); text-decoration: underline; text-underline-offset: 3px; }
+.cartao__dominio { margin: 0.1rem 0 0.5rem; font-size: 0.85rem; color: var(--tinta-suave); overflow-wrap: anywhere; }
+.cartao__desc { margin: 0 0 0.75rem; font-size: 0.95rem; }
+.tags { list-style: none; margin: 0 0 0.6rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.tags li { font-size: 0.8rem; padding: 0.1rem 0.55rem; border: 1px solid var(--linha); border-radius: 1rem; color: var(--tinta-suave); }
+.tags .tag--tipo { background: var(--destaque-fundo); border-color: transparent; color: var(--destaque); font-weight: 500; }
+.cartao__meta { margin: 0; font-size: 0.82rem; color: var(--tinta-suave); }
+
+/* Estado vazio */
+.vazio { padding: 2.5rem 1rem; text-align: center; border: 1px dashed var(--linha); border-radius: 0.5rem; }
+.vazio[hidden] { display: none; }
+.vazio p { margin: 0 0 0.4rem; }
+
+/* Rodapé */
+.rodape { border-top: 1px solid var(--linha); padding: 1.5rem 1.25rem; text-align: center; font-size: 0.85rem; color: var(--tinta-suave); }
+.rodape p { max-width: 40rem; margin: 0 auto; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

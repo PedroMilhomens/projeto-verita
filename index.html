@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Veritá – Contra a desinformação, fatos.</title>
+  <meta name="description" content="Veritá: diretório de fontes de notícias confiáveis — jornais, agências, checagem de fatos e divulgação científica.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="topo__conteudo">
+      <h1 class="marca"><img src="assets/logo-verita.png" alt="Veritá – Contra a desinformação, fatos."></h1>
+      <p class="lema">Diretório de fontes de notícias confiáveis. Pesquise e filtre por assunto, tipo, país e idioma.</p>
+      <div class="busca">
+        <label for="busca" class="sr-only">Pesquisar fontes</label>
+        <input id="busca" type="search" placeholder="Pesquise por nome, assunto ou descrição" autocomplete="off">
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="filtros" aria-label="Filtros">
+      <details class="filtros__caixa" open>
+        <summary>Filtros <span id="filtros-ativos" class="selo" hidden></span></summary>
+        <div id="filtros-grupos"></div>
+        <button type="button" id="limpar" class="btn-limpar">Limpar filtros</button>
+      </details>
+    </aside>
+
+    <section class="resultados" aria-labelledby="contagem">
+      <div class="barra">
+        <p id="contagem" aria-live="polite"></p>
+        <label class="ordem">Ordenar
+          <select id="ordem">
+            <option value="az">Nome (A–Z)</option>
+            <option value="za">Nome (Z–A)</option>
+            <option value="categoria">Categoria</option>
+          </select>
+        </label>
+      </div>
+      <ul id="lista" class="lista"></ul>
+      <div id="vazio" class="vazio" hidden>
+        <p><strong>Nenhuma fonte encontrada.</strong></p>
+        <p>Tente outro termo ou remova algum filtro.</p>
+        <button type="button" id="limpar-vazio" class="btn-limpar">Limpar busca e filtros</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>Veritá – Contra a desinformação, fatos. Lista curada manualmente: estar aqui não garante que todo conteúdo da fonte esteja correto. Confira sempre mais de uma fonte.</p>
+  </footer>
+
+  <script src="js/fontes.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
